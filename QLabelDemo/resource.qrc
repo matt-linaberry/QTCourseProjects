@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/">
+        <file>images/Minions_characters.png</file>
+    </qresource>
+</RCC>
