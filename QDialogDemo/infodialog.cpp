@@ -1,0 +1,52 @@
+#include "infodialog.h"
+#include "ui_infodialog.h"
+
+InfoDialog::InfoDialog(QWidget *parent) :
+    QDialog(parent, Qt::WindowSystemMenuHint),
+    ui(new Ui::InfoDialog)
+{
+    ui->setupUi(this);
+}
+
+InfoDialog::~InfoDialog()
+{
+    delete ui;
+}
+
+void InfoDialog::on_okButton_clicked()
+{
+
+    // collect info
+    QString userPosition = ui->positionLineEdit->text();
+    if (!userPosition.isEmpty()) {
+        position = userPosition;
+
+        if (ui->windowsRadioButton->isChecked()) {
+            favoriteOs = "Windows";
+        }
+        if (ui->macRadioButton->isChecked()) {
+            favoriteOs = "Mac";
+        }
+        if (ui->linuxRadioButton->isChecked()) {
+            favoriteOs = "Linux";
+        }
+    }
+
+    // accept the dialog.
+    accept();
+}
+
+void InfoDialog::on_cancelButton_clicked()
+{
+    reject();
+}
+
+QString InfoDialog::getFavoriteOs() const
+{
+    return favoriteOs;
+}
+
+QString InfoDialog::getPosition() const
+{
+    return position;
+}
